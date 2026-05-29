@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webseitenkonzept – martinmantel.de</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-mid: #14213d;
+  --navy-light: #1e3a5f;
+  --blue: #185FA5;
+  --blue-light: #378ADD;
+  --blue-pale: #E6F1FB;
+  --teal: #0F6E56;
+  --teal-pale: #E1F5EE;
+  --amber: #BA7517;
+  --amber-pale: #FAEEDA;
+  --red: #A32D2D;
+  --red-pale: #FCEBEB;
+  --gray-100: #F7F8FA;
+  --gray-200: #ECEEF2;
+  --gray-300: #D8DCE4;
+  --gray-400: #9AA0AD;
+  --gray-600: #5A6070;
+  --gray-800: #1C2333;
+  --white: #ffffff;
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--gray-100);
+  color: var(--gray-800);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── LAYOUT ── */
+.app { display: flex; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: var(--navy);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.sidebar-brand-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  margin-top: 4px;
+  letter-spacing: .04em;
+}
+
+.sidebar-section {
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin: 1px 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  color: rgba(255,255,255,.55);
+  font-size: 13px;
+  font-weight: 400;
+  transition: all .15s;
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: calc(100% - 16px);
+  text-align: left;
+}
+
+.sidebar-item:hover { background: rgba(255,255,255,.07); color: rgba(255,255,255,.85); }
+
+.sidebar-item.active {
+  background: rgba(55,138,221,.2);
+  color: #85B7EB;
+  font-weight: 500;
+}
+
+.sidebar-item .item-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.sidebar-item.active .item-num {
+  background: rgba(55,138,221,.4);
+  color: #B5D4F4;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: 11px;
+  color: rgba(255,255,255,.25);
+  line-height: 1.5;
+}
+
+/* ── MAIN ── */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 40px 48px;
+  max-width: 900px;
+}
+
+/* ── PAGE HEADER ── */
+.page-hero {
+  margin-bottom: 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.page-hero-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+.page-hero-desc {
+  font-size: 15px;
+  color: var(--gray-600);
+  max-width: 560px;
+  line-height: 1.65;
+}
+
+.page-meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--gray-300);
+  color: var(--gray-600);
+  background: var(--white);
+}
+
+.meta-pill.blue { background: var(--blue-pale); border-color: #B5D4F4; color: var(--blue); }
+.meta-pill.teal { background: var(--teal-pale); border-color: #9FE1CB; color: var(--teal); }
+.meta-pill.amber { background: var(--amber-pale); border-color: #FAC775; color: var(--amber); }
+.meta-pill.red { background: var(--red-pale); border-color: #F7C1C1; color: var(--red); }
+
+/* ── SECTION CARDS ── */
+.section-group { margin-bottom: 32px; }
+
+.section-group-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.card-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-600);
+  flex-shrink: 0;
+}
+
+.card-title { font-size: 14px; font-weight: 600; color: var(--gray-800); flex: 1; }
+.card-body { padding: 18px; }
+
+.badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+
+.badge-blue { background: var(--blue-pale); color: var(--blue); }
+.badge-teal { background: var(--teal-pale); color: var(--teal); }
+.badge-amber { background: var(--amber-pale); color: var(--amber); }
+.badge-red { background: var(--red-pale); color: var(--red); }
+.badge-gray { background: var(--gray-200); color: var(--gray-600); }
+
+/* ── GRID LAYOUTS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+.field { margin-bottom: 14px; }
+.field:last-child { margin-bottom: 0; }
+.field-label { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+.field-val { font-size: 13px; color: var(--gray-800); line-height: 1.5; }
+
+/* ── COPY BLOCKS ── */
+.copy-block {
+  background: #F0F6FF;
+  border-left: 3px solid var(--blue-light);
+  padding: 12px 14px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top: 10px;
+}
+
+.copy-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 5px;
+}
+
+.copy-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--navy);
+  line-height: 1.6;
+}
+
+/* ── OPEN ITEMS ── */
+.open-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 12px;
+  background: #FFFBF0;
+  border: 1px solid #FAC775;
+  border-radius: var(--radius);
+  margin-top: 8px;
+  font-size: 12px;
+  color: #7A4F00;
+  line-height: 1.5;
+}
+
+.open-item::before { content: '⚠'; flex-shrink: 0; }
+
+/* ── NO-GO ITEMS ── */
+.nogo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--red-pale);
+  border: 1px solid #F7C1C1;
+  border-radius: var(--radius);
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--red);
+  line-height: 1.5;
+}
+
+.nogo-item::before { content: '✕'; flex-shrink: 0; font-weight: 700; }
+
+/* ── CHECK LIST ── */
+.check-list { display: flex; flex-direction: column; gap: 5px; margin-top: 8px; }
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gray-800);
+  line-height: 1.4;
+}
+
+.check-item::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+/* ── TAGS ── */
+.tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+
+.tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  background: var(--gray-100);
+}
+
+/* ── WIREFRAME ── */
+.wireframe {
+  background: var(--gray-800);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.wireframe-bar {
+  background: #111827;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wireframe-dot { width: 9px; height: 9px; border-radius: 50%; }
+.wireframe-url {
+  flex: 1;
+  background: rgba(255,255,255,.07);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: rgba(255,255,255,.3);
+}
+
+.wireframe-body { padding: 0; }
+
+/* Wireframe sections */
+.wf-hero {
+  background: var(--navy);
+  padding: 32px 28px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wf-hero-eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: #378ADD;
+  border: 1px solid rgba(55,138,221,.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.wf-hero-h1 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 380px;
+  margin-bottom: 10px;
+}
+
+.wf-hero-h1 em { color: #378ADD; font-style: normal; }
+
+.wf-hero-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  max-width: 340px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.wf-cta-row { display: flex; gap: 8px; }
+
+.wf-btn-primary {
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: default;
+}
+
+.wf-btn-secondary {
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-size: 12px;
+  cursor: default;
+}
+
+.wf-net {
+  position: absolute;
+  top: 0; right: 0;
+  width: 180px;
+  height: 100%;
+  opacity: .2;
+}
+
+.wf-cert-row {
+  display: flex;
+  gap: 6px;
+  padding: 14px 28px;
+  background: rgba(255,255,255,.04);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.wf-cert {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-size: 10px;
+  color: rgba(255,255,255,.4);
+  font-family: var(--font-mono);
+}
+
+.wf-section {
+  padding: 22px 28px;
+  border-top: 1px solid var(--gray-200);
+  background: var(--white);
+}
+
+.wf-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+.wf-kacheln { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+.wf-kachel {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.wf-kachel-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--blue-pale);
+  border-radius: 7px;
+  margin-bottom: 8px;
+}
+
+.wf-kachel-title { font-size: 12px; font-weight: 600; color: var(--gray-800); margin-bottom: 4px; }
+.wf-kachel-sub { font-size: 11px; color: var(--gray-400); line-height: 1.4; }
+
+.wf-blog-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+.wf-blog-card {
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.wf-blog-img { height: 60px; background: var(--gray-200); }
+.wf-blog-body { padding: 10px; }
+.wf-blog-cat { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--blue); margin-bottom: 4px; }
+.wf-blog-title { font-size: 11px; font-weight: 600; color: var(--gray-800); line-height: 1.35; }
+.wf-blog-meta { font-size: 10px; color: var(--gray-400); margin-top: 5px; }
+
+.wf-dark-strip {
+  background: var(--navy-mid);
+  padding: 22px 28px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.wf-testimonial {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 10px;
+}
+
+.wf-testimonial-author { font-size: 11px; color: rgba(255,255,255,.35); }
+
+.wf-calendly {
+  background: var(--blue-pale);
+  border: 1px dashed #B5D4F4;
+  border-radius: var(--radius);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--blue);
+  font-family: var(--font-mono);
+}
+
+/* ── STRATEGY OVERVIEW ── */
+.strategy-card {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.strategy-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.strategy-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.pillar-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.pillar-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.pillar-label-small {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 6px;
+}
+
+.pillar-card-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85); margin-bottom: 8px; }
+
+.pillar-topics { display: flex; flex-direction: column; gap: 4px; }
+.pillar-topic { font-size: 11px; color: rgba(255,255,255,.5); display: flex; align-items: center; gap: 6px; }
+.pillar-topic::before { content: '→'; color: rgba(55,138,221,.7); }
+
+.funnel-vis {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.funnel-step-vis {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 11px;
+  color: rgba(255,255,255,.6);
+  line-height: 1.3;
+}
+
+.funnel-step-vis.highlight {
+  background: rgba(55,138,221,.2);
+  border-color: rgba(55,138,221,.4);
+  color: #85B7EB;
+}
+
+.funnel-arrow-vis {
+  font-size: 14px;
+  color: rgba(255,255,255,.2);
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+/* ── PAGE SECTIONS ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── OVERVIEW GRID ── */
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+
+.overview-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  cursor: pointer;
+  transition: all .15s;
+  box-shadow: var(--shadow);
+}
+
+.overview-card:hover {
+  border-color: #B5D4F4;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.ov-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 4px;
+}
+
+.ov-title { font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 6px; }
+.ov-desc { font-size: 12px; color: var(--gray-600); line-height: 1.5; margin-bottom: 10px; }
+
+.ov-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.ov-tag { font-size: 10px; padding: 1px 7px; border-radius: 10px; border: 1px solid var(--gray-200); color: var(--gray-600); background: var(--gray-100); }
+
+/* ── PROJECT INFO TABLE ── */
+.info-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.info-table tr { border-bottom: 1px solid var(--gray-200); }
+.info-table tr:last-child { border-bottom: none; }
+.info-table td { padding: 8px 12px; font-size: 13px; }
+.info-table td:first-child { font-weight: 500; color: var(--gray-600); width: 180px; background: var(--gray-100); font-size: 12px; }
+.info-table td:last-child { color: var(--gray-800); }
+
+/* ── BLOG CATEGORY CARDS ── */
+.cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.cat-card {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  background: var(--gray-100);
+}
+.cat-card.blue { background: var(--blue-pale); border-color: #B5D4F4; }
+.cat-card.teal { background: var(--teal-pale); border-color: #9FE1CB; }
+.cat-card.purple { background: #EEEDFE; border-color: #CECBF6; }
+
+.cat-name { font-size: 12px; font-weight: 600; color: var(--gray-800); margin-bottom: 3px; }
+.cat-card.blue .cat-name { color: var(--blue); }
+.cat-card.teal .cat-name { color: var(--teal); }
+.cat-card.purple .cat-name { color: #534AB7; }
+.cat-desc { font-size: 11px; color: var(--gray-600); line-height: 1.4; }
+
+/* ── HERO VARIANT TOGGLE ── */
+.variant-toggle { display: flex; gap: 6px; margin-bottom: 12px; }
+.v-btn {
+  font-size: 11px; font-weight: 500; padding: 5px 12px;
+  border-radius: 20px; border: 1px solid var(--gray-300);
+  background: var(--white); color: var(--gray-600); cursor: pointer;
+}
+.v-btn.active { background: var(--navy); border-color: var(--navy); color: white; }
+
+.hero-variant { display: none; }
+.hero-variant.active { display: block; }
+
+/* Variante B: hell + Rot */
+.wf-hero-b {
+  background: #f7f9fc;
+  padding: 28px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.wf-hero-b-left { flex: 1; }
+.wf-hero-b-badge {
+  display: inline-block;
+  background: var(--red-pale);
+  border: 1px solid #ffbdbd;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 10px;
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: .04em;
+}
+.wf-hero-b-h1 { font-family: var(--font-display); font-size: 22px; color: #0d1f3c; line-height: 1.2; margin-bottom: 8px; }
+.wf-hero-b-h1 em { color: #E24B4A; font-style: normal; }
+.wf-hero-b-sub { font-size: 11px; color: #556; line-height: 1.6; margin-bottom: 16px; }
+.wf-hero-b-cta { background: #E24B4A; color: white; border: none; padding: 9px 18px; border-radius: 7px; font-size: 12px; font-weight: 500; }
+.wf-shield { width: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+/* Variante C: Terminal */
+.wf-hero-c {
+  background: #0f1117;
+  padding: 28px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.wf-hero-c-left { flex: 1; }
+.wf-hero-c-label { font-size: 10px; color: #4a9; letter-spacing: .08em; margin-bottom: 12px; font-family: var(--font-mono); }
+.wf-hero-c-h1 { font-family: var(--font-display); font-size: 22px; color: #f0f2f5; line-height: 1.2; margin-bottom: 8px; }
+.wf-hero-c-h1 .hl { color: #5DCAA5; font-style: normal; }
+.wf-hero-c-sub { font-size: 11px; color: #556; margin-bottom: 16px; font-family: var(--font-mono); }
+.wf-hero-c-cta { background: #1D9E75; color: white; border: none; padding: 9px 18px; border-radius: 6px; font-size: 12px; font-weight: 500; font-family: var(--font-mono); }
+.term-mini { background: #1a1f2e; border: 1px solid #2a3555; border-radius: 8px; overflow: hidden; width: 140px; flex-shrink: 0; }
+.term-mini-bar { background: #232840; padding: 6px 10px; display: flex; gap: 4px; }
+.term-dot { width: 7px; height: 7px; border-radius: 50%; }
+.term-mini-body { padding: 10px; font-family: var(--font-mono); font-size: 9px; line-height: 1.8; color: #4a6a5a; }
+.tg{color:#4a9} .ty{color:#cc8} .tr{color:#c66} .tw{color:#889}
+
+/* ── SCROLLBAR ── */
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-name">martinmantel.de</div>
+    <div class="sidebar-brand-sub">WEBSEITENKONZEPT · MAI 2026</div>
+  </div>
+
+  <div class="sidebar-section">Übersicht</div>
+  <button class="sidebar-item active" onclick="show('overview')">
+    <span class="item-num">↗</span> Projektübersicht
+  </button>
+  <button class="sidebar-item" onclick="show('positionierung')">
+    <span class="item-num">⊕</span> Positionierung
+  </button>
+
+  <div class="sidebar-section">Seiten</div>
+  <button class="sidebar-item" onclick="show('home')">
+    <span class="item-num">01</span> Startseite
+  </button>
+  <button class="sidebar-item" onclick="show('ueber')">
+    <span class="item-num">02</span> Über mich
+  </button>
+  <button class="sidebar-item" onclick="show('themen')">
+    <span class="item-num">03</span> Themen
+  </button>
+  <button class="sidebar-item" onclick="show('blog')">
+    <span class="item-num">04</span> Blog
+  </button>
+  <button class="sidebar-item" onclick="show('seminar')">
+    <span class="item-num">05</span> Seminar
+  </button>
+  <button class="sidebar-item" onclick="show('kontakt')">
+    <span class="item-num">06</span> Kontakt
+  </button>
+  <button class="sidebar-item" onclick="show('legal')">
+    <span class="item-num">07</span> Legal
+  </button>
+
+  <div class="sidebar-section">Technik</div>
+  <button class="sidebar-item" onclick="show('tech')">
+    <span class="item-num">⚙</span> Stack & Plugins
+  </button>
+  <button class="sidebar-item" onclick="show('offene')">
+    <span class="item-num">!</span> Offene Punkte
+  </button>
+
+  <div class="sidebar-footer">
+    Konzept · Stand Mai 2026<br>
+    Planungsphase abgeschlossen
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ═══════════════════════════════════════ OVERVIEW ═══ -->
+<div class="page active" id="page-overview">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Webseitenkonzept</div>
+    <h1 class="page-hero-title">martinmantel.de</h1>
+    <p class="page-hero-desc">Personal Branding für Martin Mantel als Experte für OT/ICS Security, ISO 27001 Beratung und Seminare. Eigenständiges Projekt – unabhängig von consultant-coach.de.</p>
+    <div class="page-meta">
+      <span class="meta-pill blue">WordPress + Elementor Pro</span>
+      <span class="meta-pill teal">7 Seiten</span>
+      <span class="meta-pill">Hosting: all-inkl.com</span>
+      <span class="meta-pill">Kalender: Calendly</span>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Projektdaten</div>
+    <div class="card">
+      <div class="card-body" style="padding:0">
+        <table class="info-table">
+          <tr><td>Kunde</td><td>Martin Mantel</td></tr>
+          <tr><td>Domain (geplant)</td><td>martinmantel.de <span class="badge badge-amber">Bitte bestätigen</span></td></tr>
+          <tr><td>Bestehende Seite</td><td>consultant-coach.de — bleibt unverändert bestehen</td></tr>
+          <tr><td>Plattform</td><td>WordPress · Hello Elementor Theme oder Astra · Elementor Pro</td></tr>
+          <tr><td>Entwicklung</td><td>Lokal (Local by Flywheel) → Migration via Duplicator → all-inkl.com</td></tr>
+          <tr><td>Workflow</td><td>Konzept → Claude Design (Mockups) → Claude Code (Build) → Deploy</td></tr>
+          <tr><td>Kalender</td><td>Calendly — kostenloses Erstgespräch, 30 Min.</td></tr>
+          <tr><td>SEO</td><td>Rank Math · Schema.org · llm.txt für KI-Suche</td></tr>
+          <tr><td>DSGVO</td><td>Borlabs Cookie · Fluent Forms · Datenschutzhinweise</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">7 Seiten im Überblick — klicken zum Öffnen</div>
+    <div class="overview-grid">
+      <div class="overview-card" onclick="show('home')">
+        <div class="ov-eyebrow">Seite 01</div>
+        <div class="ov-title">Startseite</div>
+        <div class="ov-desc">Hero mit starkem visuellen CTA, Vertrauensleiste, Themen-Kacheln, Blog-Teaser, Calendly-Block.</div>
+        <div class="ov-tags"><span class="ov-tag">Leads</span><span class="ov-tag">Calendly</span><span class="ov-tag">Blog-Teaser</span></div>
+      </div>
+      <div class="overview-card" onclick="show('ueber')">
+        <div class="ov-eyebrow">Seite 02</div>
+        <div class="ov-title">Über mich</div>
+        <div class="ov-desc">Timeline, Zertifikate, Martins persönliche Standpunkte, anonymisierte Projektbeispiele.</div>
+        <div class="ov-tags"><span class="ov-tag">Personal Branding</span><span class="ov-tag">Geschichte</span></div>
+      </div>
+      <div class="overview-card" onclick="show('themen')">
+        <div class="ov-eyebrow">Seite 03</div>
+        <div class="ov-title">Themen / Leistungen</div>
+        <div class="ov-desc">OT Security · ISO 27001 · Seminare · Grounding-Seite für KI-Suche.</div>
+        <div class="ov-tags"><span class="ov-tag">SEO</span><span class="ov-tag">llm.txt</span></div>
+      </div>
+      <div class="overview-card" onclick="show('blog')">
+        <div class="ov-eyebrow">Seite 04</div>
+        <div class="ov-title">Blog / Insights</div>
+        <div class="ov-desc">5 Kategorien · 3 Launch-Artikel · Artikel-Template · Martins Meinung als Differenzierer.</div>
+        <div class="ov-tags"><span class="ov-tag">Autorität</span><span class="ov-tag">SEO</span><span class="ov-tag">5 Kategorien</span></div>
+      </div>
+      <div class="overview-card" onclick="show('seminar')">
+        <div class="ov-eyebrow">Seite 05</div>
+        <div class="ov-title">Seminar-Referenz</div>
+        <div class="ov-desc">Martin als Co-Trainer bei "Das neue Business". Kein Direktvertrieb — Vorabgespräch als CTA.</div>
+        <div class="ov-tags"><span class="ov-tag">Referenz</span><span class="ov-tag">Weiteleitung</span></div>
+      </div>
+      <div class="overview-card" onclick="show('kontakt')">
+        <div class="ov-eyebrow">Seite 06</div>
+        <div class="ov-title">Kontakt</div>
+        <div class="ov-desc">Calendly inline, Kontaktformular als Fallback, Direktkontakt sichtbar.</div>
+        <div class="ov-tags"><span class="ov-tag">Konversion</span><span class="ov-tag">DSGVO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Zertifikate & Siegel</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="tag-list">
+          <span class="tag">ISO 27001 Lead Auditor (TÜV geprüft)</span>
+          <span class="tag">GICSP – Global Industrial Cyber Security Professional</span>
+          <span class="tag">DGCo – Strategischer Coach</span>
+          <span class="tag">TÜV-Siegel</span>
+        </div>
+        <div class="open-item">Nutzungsrechte für alle Siegel-Logos beim Kunden bestätigen lassen.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ POSITIONIERUNG ═══ -->
+<div class="page" id="page-positionierung">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Strategie</div>
+    <h1 class="page-hero-title">Positionierung</h1>
+    <p class="page-hero-desc">Martin hat zwei Expertenrollen, die sich gegenseitig stärken. Der rote Faden: Projekte scheitern an Menschen, nicht an Technik.</p>
+  </div>
+
+  <div class="strategy-card">
+    <div class="strategy-title">Zwei Seiten, ein Mensch</div>
+    <div class="strategy-desc">martinmantel.de und consultant-coach.de sind eigenständig — aber sie erzählen zusammen eine größere Geschichte. Kein anderer Berater kombiniert OT-Security-Expertise mit DGCo-Coach-Ausbildung.</div>
+    <div class="pillar-row">
+      <div class="pillar-card">
+        <div class="pillar-label-small">Säule 1 · martinmantel.de (neu)</div>
+        <div class="pillar-card-title">Tech-Experte & Sicherheitsberater</div>
+        <div class="pillar-topics">
+          <div class="pillar-topic">OT / ICS Security</div>
+          <div class="pillar-topic">ISO 27001 Beratung & Audits</div>
+          <div class="pillar-topic">Awareness-Seminare & Training</div>
+          <div class="pillar-topic">Blog: Fachliche Standpunkte</div>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-label-small">Säule 2 · consultant-coach.de (bestehend)</div>
+        <div class="pillar-card-title">Coach & Berater (IT + Menschen)</div>
+        <div class="pillar-topics">
+          <div class="pillar-topic">Projekt-Coaching</div>
+          <div class="pillar-topic">Prozessoptimierung</div>
+          <div class="pillar-topic">Informationssicherheit & Datenschutz</div>
+          <div class="pillar-topic">"Das neue Business" Seminar</div>
+        </div>
+      </div>
+    </div>
+    <div class="funnel-vis">
+      <div class="funnel-step-vis">Besucher</div>
+      <div class="funnel-arrow-vis">→</div>
+      <div class="funnel-step-vis highlight">martinmantel.de<br><span style="font-size:10px;opacity:.7">Vertrauen aufbauen</span></div>
+      <div class="funnel-arrow-vis">→</div>
+      <div class="funnel-step-vis highlight">Vorabgespräch (Calendly)<br><span style="font-size:10px;opacity:.7">Primär-CTA</span></div>
+      <div class="funnel-arrow-vis">→</div>
+      <div class="funnel-step-vis">Beratung / Seminar<br><span style="font-size:10px;opacity:.7">Abschluss</span></div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Das Alleinstellungsmerkmal</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="copy-block">
+          <div class="copy-label">Roter Faden (für die gesamte Webseite)</div>
+          <div class="copy-text">Ich habe 15 Jahre weltweit als IT-Berater gearbeitet – bis ich gemerkt habe, dass die meisten Projekte nicht an Technik scheitern, sondern an Menschen und Kommunikation. Das war der Moment, in dem ich anfing, Coaching zu lernen. Heute kombiniere ich beides.</div>
+        </div>
+        <div class="check-list" style="margin-top:14px">
+          <div class="check-item">Dipl.-Ing. Nachrichtentechnik + 30 Jahre IT-Praxis → technische Tiefe</div>
+          <div class="check-item">DGCo Strategischer Coach (2009–2010) → menschliches Verständnis</div>
+          <div class="check-item">ISO 27001 Lead Auditor (TÜV) + GICSP → zertifizierte Fachkompetenz</div>
+          <div class="check-item">Artikel wie "Was OT-Security und Coaching gemeinsam haben" — gibt es so nicht zweimal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Verlinkungsstrategie</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="grid-2">
+          <div>
+            <div class="field-label">martinmantel.de → consultant-coach.de</div>
+            <div class="field-val" style="font-size:12px">Über-mich-Seite: "Mehr zu meiner Coaching-Arbeit"</div>
+          </div>
+          <div>
+            <div class="field-label">consultant-coach.de → martinmantel.de</div>
+            <div class="field-val" style="font-size:12px">Profil-Seite: "OT-Security & ISO 27001 Expertise"</div>
+          </div>
+          <div>
+            <div class="field-label">martinmantel.de → das-neue-business.at</div>
+            <div class="field-val" style="font-size:12px">Seminar-Seite: Externer Link, neues Tab</div>
+          </div>
+          <div>
+            <div class="field-label">das-neue-business.at → martinmantel.de</div>
+            <div class="field-val" style="font-size:12px">/trainer#martinmantel bereits verlinkt — URL aktuell halten</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ HOME ═══ -->
+<div class="page" id="page-home">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 01</div>
+    <h1 class="page-hero-title">Startseite</h1>
+    <p class="page-hero-desc">Sofortige Positionierung, Vertrauen aufbauen, Besucher in die richtige Richtung leiten. Primär-CTA: Calendly-Buchung. Blog direkt integriert.</p>
+    <div class="page-meta">
+      <span class="meta-pill blue">Primär-CTA: Calendly</span>
+      <span class="meta-pill teal">Blog-Teaser integriert</span>
+      <span class="meta-pill">Kein Foto im Hero</span>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Hero — Visueller Ansatz (3 Varianten zur Auswahl)</div>
+    <div class="variant-toggle">
+      <button class="v-btn active" onclick="switchHero('a',this)">A – Netzwerk-Animation</button>
+      <button class="v-btn" onclick="switchHero('b',this)">B – Schild-Visual (Rot)</button>
+      <button class="v-btn" onclick="switchHero('c',this)">C – Terminal-Ästhetik</button>
+    </div>
+
+    <div class="wireframe">
+      <div class="wireframe-bar">
+        <div class="wireframe-dot" style="background:#ef4444"></div>
+        <div class="wireframe-dot" style="background:#f59e0b"></div>
+        <div class="wireframe-dot" style="background:#22c55e"></div>
+        <div class="wireframe-url">martinmantel.de</div>
+      </div>
+      <div class="wireframe-body">
+
+        <!-- VARIANTE A -->
+        <div class="hero-variant active" id="hero-a">
+          <div class="wf-hero">
+            <svg class="wf-net" viewBox="0 0 180 160" xmlns="http://www.w3.org/2000/svg">
+              <line x1="40" y1="30" x2="120" y2="80" stroke="#378ADD" stroke-width=".5" opacity=".6"/>
+              <line x1="120" y1="80" x2="160" y2="20" stroke="#378ADD" stroke-width=".5" opacity=".4"/>
+              <line x1="40" y1="30" x2="90" y2="120" stroke="#378ADD" stroke-width=".5" opacity=".3"/>
+              <line x1="160" y1="20" x2="90" y2="120" stroke="#378ADD" stroke-width=".5" opacity=".5"/>
+              <line x1="120" y1="80" x2="170" y2="110" stroke="#378ADD" stroke-width=".5" opacity=".3"/>
+              <circle cx="40" cy="30" r="3" fill="#378ADD" opacity=".7"/>
+              <circle cx="120" cy="80" r="3" fill="#378ADD" opacity=".7"/>
+              <circle cx="160" cy="20" r="2" fill="#378ADD" opacity=".5"/>
+              <circle cx="90" cy="120" r="2.5" fill="#378ADD" opacity=".6"/>
+              <circle cx="170" cy="110" r="2" fill="#378ADD" opacity=".4"/>
+            </svg>
+            <div style="position:relative;z-index:2;max-width:400px">
+              <div class="wf-hero-eyebrow">OT/ICS Security · ISO 27001</div>
+              <div class="wf-hero-h1">Sicherheit, die <em>wirklich schützt</em> –<br>nicht nur auf dem Papier.</div>
+              <div class="wf-hero-sub">Ich helfe Unternehmen, ihre Operational Technology nachhaltig abzusichern – mit Erfahrung aus der Praxis.</div>
+              <div class="wf-cta-row">
+                <div class="wf-btn-primary">Kostenloses Erstgespräch buchen</div>
+                <div class="wf-btn-secondary">Themen entdecken ↓</div>
+              </div>
+            </div>
+          </div>
+          <div class="wf-cert-row">
+            <div class="wf-cert">ISO 27001</div>
+            <div class="wf-cert">GICSP</div>
+            <div class="wf-cert">TÜV</div>
+            <div class="wf-cert">DGCo</div>
+            <div class="wf-cert" style="opacity:.3">··· Kundenlogos ···</div>
+          </div>
+        </div>
+
+        <!-- VARIANTE B -->
+        <div class="hero-variant" id="hero-b">
+          <div class="wf-hero-b">
+            <div class="wf-hero-b-left">
+              <div class="wf-hero-b-badge">OT · ICS · ISO 27001</div>
+              <div class="wf-hero-b-h1">IT-Sicherheit, die <em>funktioniert</em> –<br>auch wenn es darauf ankommt.</div>
+              <div class="wf-hero-b-sub">Zertifizierter Experte für OT/ICS-Security und ISO 27001. Beratung, Audits, Seminare.</div>
+              <div class="wf-hero-b-cta">Erstgespräch buchen</div>
+            </div>
+            <div class="wf-shield">
+              <svg width="90" height="90" viewBox="0 0 90 90">
+                <path d="M45 10L70 22L70 46Q70 66 45 78Q20 66 20 46L20 22Z" fill="#fdf0f0" stroke="#E24B4A" stroke-width="1.5"/>
+                <path d="M45 24L58 31L58 46Q58 58 45 66Q32 58 32 46L32 31Z" fill="#fce8e8" stroke="#E24B4A" stroke-width=".5"/>
+                <path d="M37 46L43 52 L55 40" fill="none" stroke="#E24B4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div style="padding:10px 18px;background:#f7f9fc;border-top:1px solid #e0e6ef;display:flex;gap:6px">
+            <span style="font-size:10px;padding:2px 7px;border-radius:4px;border:1px solid #d0d8e6;color:#445;background:white">ISO 27001 Lead Auditor (TÜV)</span>
+            <span style="font-size:10px;padding:2px 7px;border-radius:4px;border:1px solid #d0d8e6;color:#445;background:white">GICSP</span>
+            <span style="font-size:10px;padding:2px 7px;border-radius:4px;border:1px solid #d0d8e6;color:#445;background:white">DGCo</span>
+          </div>
+        </div>
+
+        <!-- VARIANTE C -->
+        <div class="hero-variant" id="hero-c">
+          <div class="wf-hero-c">
+            <div class="wf-hero-c-left">
+              <div class="wf-hero-c-label">// ot-security · iso27001 · coaching</div>
+              <div class="wf-hero-c-h1">OT-Security, die <em class="hl">hält</em> –<br>nicht nur besteht.</div>
+              <div class="wf-hero-c-sub">$ expertise --domain ot-ics --cert iso27001</div>
+              <div class="wf-hero-c-cta">Erstgespräch buchen</div>
+            </div>
+            <div class="term-mini">
+              <div class="term-mini-bar">
+                <div class="term-dot" style="background:#c66"></div>
+                <div class="term-dot" style="background:#cc8"></div>
+                <div class="term-dot" style="background:#4a9"></div>
+              </div>
+              <div class="term-mini-body">
+                <span class="tg">audit</span> <span class="tw">--ot</span><br>
+                <span class="ty">scanning...</span><br>
+                <span class="tg">✓</span> <span class="tw">SPS</span><br>
+                <span class="tg">✓</span> <span class="tw">SCADA</span><br>
+                <span class="tr">!</span> <span class="tw">3 gaps</span><br>
+                <span class="tg">→</span> <span class="tw">report</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding:8px 14px;background:#0f1117;border-top:1px solid #1a2030;display:flex;gap:6px">
+            <span style="font-size:9px;padding:2px 8px;border-radius:4px;border:1px solid #2a3a3a;color:#4a9;font-family:monospace">ISO 27001</span>
+            <span style="font-size:9px;padding:2px 8px;border-radius:4px;border:1px solid #2a3a3a;color:#4a9;font-family:monospace">GICSP</span>
+            <span style="font-size:9px;padding:2px 8px;border-radius:4px;border:1px solid #2a3a3a;color:#4a9;font-family:monospace">DGCo</span>
+          </div>
+        </div>
+
+        <!-- Sections below hero — same for all variants -->
+        <div class="wf-section">
+          <div class="wf-section-label">Section 2 · Persönliche Vorstellung + Foto</div>
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="width:80px;height:96px;background:var(--gray-200);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gray-400)">Foto</div>
+            <div>
+              <div style="font-size:12px;line-height:1.6;color:var(--gray-800);margin-bottom:8px">Ich bin kein Fan von Sicherheitskonzepten, die im Regal verstauben. Ich bin Martin Mantel – und ich helfe Ihnen, OT-Sicherheit zu einer echten Stärke zu machen.</div>
+              <div class="tag-list"><span class="tag">ISO 27001 Lead Auditor</span><span class="tag">GICSP</span><span class="tag">DGCo Coach</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf-section">
+          <div class="wf-section-label">Section 3 · Themen-Kacheln</div>
+          <div class="wf-kacheln">
+            <div class="wf-kachel"><div class="wf-kachel-icon"></div><div class="wf-kachel-title">OT/ICS Security</div><div class="wf-kachel-sub">Schutz industrieller Steuerungssysteme</div></div>
+            <div class="wf-kachel"><div class="wf-kachel-icon"></div><div class="wf-kachel-title">ISO 27001</div><div class="wf-kachel-sub">Von der Lücke zur Zertifizierung</div></div>
+            <div class="wf-kachel"><div class="wf-kachel-icon"></div><div class="wf-kachel-title">Seminare & Training</div><div class="wf-kachel-sub">Awareness, das wirklich ankommt</div></div>
+          </div>
+        </div>
+
+        <div class="wf-section">
+          <div class="wf-section-label">Section 4 · Blog-Teaser (3 aktuelle Beiträge)</div>
+          <div class="wf-blog-row">
+            <div class="wf-blog-card"><div class="wf-blog-img"></div><div class="wf-blog-body"><div class="wf-blog-cat">OT Security</div><div class="wf-blog-title">Warum OT Security kein IT-Problem ist</div><div class="wf-blog-meta">7 min · Mai 2026</div></div></div>
+            <div class="wf-blog-card"><div class="wf-blog-img"></div><div class="wf-blog-body"><div class="wf-blog-cat">ISO 27001</div><div class="wf-blog-title">ISO 27001 – 5 Fragen, die wirklich zählen</div><div class="wf-blog-meta">5 min · Apr 2026</div></div></div>
+            <div class="wf-blog-card"><div class="wf-blog-img"></div><div class="wf-blog-body"><div class="wf-blog-cat">Martins Meinung</div><div class="wf-blog-title">Was Checklisten nicht können</div><div class="wf-blog-meta">4 min · Apr 2026</div></div></div>
+          </div>
+        </div>
+
+        <div class="wf-dark-strip">
+          <div style="font-size:10px;letter-spacing:.06em;color:rgba(255,255,255,.3);margin-bottom:10px">SECTION 5 · KUNDENSTIMMEN</div>
+          <div class="wf-testimonial">„Martin hat nicht nur unsere Systeme geprüft – er hat uns geholfen zu verstehen, warum Sicherheit unser Problem ist."</div>
+          <div class="wf-testimonial-author">Name, Funktion, Unternehmen — Freigabe ausstehend</div>
+        </div>
+
+        <div class="wf-section">
+          <div class="wf-section-label">Section 6 · Calendly Inline-Embed</div>
+          <div style="margin-bottom:8px;font-size:12px;color:var(--gray-600);font-style:italic">Einfach Termin wählen – kein Formular, kein Warten.</div>
+          <div class="wf-calendly">[ Calendly Inline Widget — Kostenloses Erstgespräch 30 Min. ]</div>
+          <div style="font-size:10px;color:var(--gray-400);margin-top:6px">DSGVO-Hinweis · Borlabs: erst nach Cookie-Consent laden</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Offene Punkte für diese Seite</div>
+    <div class="card"><div class="card-body">
+      <div class="open-item">Foto von Martin — welche Variante für die Foto-Section? Professionelles Foto liegt vor — Format und Auflösung prüfen.</div>
+      <div class="open-item">Hero-Variante mit Martin abstimmen — A, B oder C? Oder Kombination?</div>
+      <div class="open-item">Kundenlogos — welche Logos dürfen gezeigt werden? Freigabe-Liste erstellen.</div>
+      <div class="open-item">Testimonials — 2–3 echte Kundenstimmen mit Freigabe einholen.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ ÜBER MICH ═══ -->
+<div class="page" id="page-ueber">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 02</div>
+    <h1 class="page-hero-title">Über mich</h1>
+    <p class="page-hero-desc">Persönlichkeit und Kompetenz verbinden. Keine trockene Biografie — eine echte Stimme, die erklärt, wie Martin zu dem wurde, was er heute ist.</p>
+    <div class="page-meta">
+      <span class="meta-pill blue">Personal Branding</span>
+      <span class="meta-pill teal">Thought Leadership</span>
+      <span class="meta-pill">Ich-Perspektive durchgehend</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">1</div><div class="card-title">Hero — Einstieg & Foto</div><span class="badge badge-amber">Persönlich, nicht CV</span></div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="field"><div class="field-label">Layout</div><div class="field-val">Großes Foto links oder als Hintergrund, Text rechts. Kein zweispaltiges Visitenkarten-Layout.</div></div>
+        <div class="field"><div class="field-label">Ton</div><div class="field-val">Ich-Perspektive, direkt — nicht "Martin Mantel ist Experte für..."</div></div>
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Einstiegssatz (Vorschlag)</div>
+        <div class="copy-text">Ich bin kein Fan von Sicherheitskonzepten, die im Regal verstauben. Ich bin Martin Mantel — und ich helfe Ihnen, OT-Sicherheit zu einer echten Stärke Ihres Unternehmens zu machen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">2</div><div class="card-title">Mein Weg — Timeline</div><span class="badge badge-blue">Wendepunkte, keine Stellenliste</span></div>
+    <div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200)"><div style="min-width:80px;font-size:12px;font-weight:600;color:var(--gray-400);padding-top:1px">1969</div><div style="font-size:13px;color:var(--gray-800)">Geburt in Essen</div></div>
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200)"><div style="min-width:80px;font-size:12px;font-weight:600;color:var(--gray-400);padding-top:1px">1990–1995</div><div style="font-size:13px;color:var(--gray-800)">Studium Elektrotechnik / Nachrichtentechnik, Berlin → Dipl.-Ing.</div></div>
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200)"><div style="min-width:80px;font-size:12px;font-weight:600;color:var(--gray-400);padding-top:1px">1994–2009</div><div style="font-size:13px;color:var(--gray-800)">Weltweit als Berater und Manager in der IT-Branche tätig</div></div>
+        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200)"><div style="min-width:80px;font-size:12px;font-weight:600;color:var(--gray-400);padding-top:1px">2009–2010</div><div style="font-size:13px;color:var(--gray-800)">Ausbildung zum strategischen Coach DGCo bei Marion Kaminski — <em>der Wendepunkt</em></div></div>
+        <div style="display:flex;gap:12px;padding:10px 0"><div style="min-width:80px;font-size:12px;font-weight:600;color:var(--blue);padding-top:1px">Seit 2009</div><div style="font-size:13px;color:var(--gray-800)">Freiberuflicher Berater — Projekt-Coaching, Datenschutz, Informationssicherheit, OT Security</div></div>
+      </div>
+      <div class="copy-block" style="margin-top:10px">
+        <div class="copy-label">Narrative Wendepunkt-Story (Vorschlag)</div>
+        <div class="copy-text">Ich habe 15 Jahre weltweit als IT-Berater gearbeitet — bis ich gemerkt habe, dass die meisten Projekte nicht an Technik scheitern, sondern an Menschen und Kommunikation. Das war der Moment, in dem ich anfing, Coaching zu lernen. Heute kombiniere ich beides.</div>
+      </div>
+      <div class="open-item">Die Wendepunkt-Story muss von Martin selbst kommen — am besten als aufgezeichnetes Gespräch, dann aufbereiten. Das ist der Kern dieser Seite.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">3</div><div class="card-title">Zertifikate & Qualifikationen</div><span class="badge badge-teal">Mit Nutzen-Erklärung</span></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">ISO 27001 Lead Auditor (TÜV geprüft) — <span style="color:var(--gray-600)">Was bedeutet das für den Kunden? → Erklärender Satz</span></div>
+        <div class="check-item">GICSP – Global Industrial Cyber Security Professional — <span style="color:var(--gray-600)">Erklärung</span></div>
+        <div class="check-item">DGCo – Strategischer Coach — <span style="color:var(--gray-600)">Ausgebildet bei Marion Kaminski</span></div>
+        <div class="check-item">TÜV-Siegel</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">4</div><div class="card-title">Meine Sichtweise — Standpunkte</div><span class="badge badge-blue">Thought Leadership</span></div>
+    <div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px"><div style="font-size:12px;font-weight:600;color:var(--gray-800);margin-bottom:3px">Warum OT Security sich fundamental von IT Security unterscheidet</div><div style="font-size:12px;color:var(--gray-600)">Martins Praxisperspektive — was passiert, wenn IT-Denkweisen auf eine SPS treffen</div></div>
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px"><div style="font-size:12px;font-weight:600;color:var(--gray-800);margin-bottom:3px">ISO 27001: Sinn oder Bürokratie?</div><div style="font-size:12px;color:var(--gray-600)">Ehrliche Einschätzung — wann hilft die Norm wirklich, wann wird sie zum Selbstzweck?</div></div>
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px"><div style="font-size:12px;font-weight:600;color:var(--gray-800);margin-bottom:3px">Aus der Praxis: anonymisiertes Projektbeispiel</div><div style="font-size:12px;color:var(--gray-600)">Problem → Entdeckung → Lösung → Lerneffekt. Kein Name, keine identifizierbare Branche.</div></div>
+      </div>
+      <div class="open-item">Diese Inhalte MÜSSEN von Martin selbst kommen — als aufgezeichnetes Gespräch aufbereiten. Das ist der wichtigste differenzierende Content der ganzen Seite.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-num">5</div><div class="card-title">Abschluss-CTA</div><span class="badge badge-teal">Konversion</span></div>
+    <div class="card-body">
+      <div class="copy-block">
+        <div class="copy-label">Text über dem CTA</div>
+        <div class="copy-text">Wenn Sie merken, dass wir ähnlich denken — dann lassen Sie uns reden. Das erste Gespräch ist kostenlos und unverbindlich.</div>
+      </div>
+      <div class="check-list" style="margin-top:12px">
+        <div class="check-item">Primär: Termin buchen → Calendly</div>
+        <div class="check-item">Sekundär: Themen ansehen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ THEMEN ═══ -->
+<div class="page" id="page-themen">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 03</div>
+    <h1 class="page-hero-title">Themen / Leistungen</h1>
+    <p class="page-hero-desc">Übersicht aller Fachbereiche. SEO-Einstiegsseite mit klarer Nutzensprache und je einem Projektbeispiel pro Thema.</p>
+    <div class="page-meta"><span class="meta-pill blue">SEO-Kern</span><span class="meta-pill">llm.txt</span><span class="meta-pill">3 Fachbereiche</span></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">1</div><div class="card-title">OT/ICS Security</div><span class="badge badge-blue">Fachbereich 1</span></div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="field"><div class="field-label">Zielgruppe</div><div class="field-val">Produktionsleiter, CISOs in Industrieunternehmen, IT-Verantwortliche ohne OT-Erfahrung</div></div>
+        <div class="field"><div class="field-label">Leistungen</div><div class="field-val">Gap-Analyse & Risikobeurteilung · Schutzkonzept & Umsetzungsbegleitung</div></div>
+      </div>
+      <div class="copy-block"><div class="copy-label">Martins Ansatz (Vorschlag)</div><div class="copy-text">OT-Security ist kein IT-Problem mit anderem Namen. Es sind andere Systeme, andere Risiken, andere Konsequenzen. Ich bringe beides zusammen.</div></div>
+      <div class="open-item">1 anonymisiertes Projektbeispiel von Martin für diesen Bereich — das stärkste Content-Element.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">2</div><div class="card-title">ISO 27001 Beratung</div><span class="badge badge-blue">Fachbereich 2</span></div>
+    <div class="card-body">
+      <div class="field"><div class="field-label">Ablauf</div><div class="field-val">1. Ist-Analyse → 2. Gap-Analyse → 3. Maßnahmen → 4. Audit-Vorbereitung → 5. Zertifizierung</div></div>
+      <div class="copy-block"><div class="copy-label">Martins ehrliche Einschätzung (Vorschlag)</div><div class="copy-text">ISO 27001 ist kein Allheilmittel. Aber richtig umgesetzt, zwingt sie Unternehmen, endlich die richtigen Fragen zu stellen.</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">3</div><div class="card-title">Seminare & Training</div><span class="badge badge-teal">Fachbereich 3</span></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">Awareness-Training — mit Live-Demos: Hacking, Drohnen, Social Engineering</div>
+        <div class="check-item">OT Security für Nicht-Techniker — Führungskräfte und Produktionsverantwortliche</div>
+        <div class="check-item">ISO 27001 Intensiv-Workshop — für Teams, die selbst zertifizieren wollen</div>
+      </div>
+      <div class="open-item">Konkrete Seminar-Details: Formate, Gruppengrößen, Termine, Orte — von Martin liefern lassen.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-num">4</div><div class="card-title">Grounding-Seite (llm.txt)</div><span class="badge badge-gray">KI-Suche</span></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">llm.txt im Root-Verzeichnis — wie robots.txt, aber für KI-Suchen (Perplexity, ChatGPT, Gemini)</div>
+        <div class="check-item">Schema.org Person-Markup auf der Über-mich-Seite</div>
+        <div class="check-item">Strukturierte Fakten: Name, Zertifikate, Themenfelder mit kurzen Definitionen</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ BLOG ═══ -->
+<div class="page" id="page-blog">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 04</div>
+    <h1 class="page-hero-title">Blog / Insights</h1>
+    <p class="page-hero-desc">Sichtbarkeit durch Expertise. "Martins Meinung" als eigene Kategorie ist der stärkste Differenzierer — persönliche Standpunkte mit Haltung ranken besser als neutrale How-to-Artikel.</p>
+    <div class="page-meta"><span class="meta-pill blue">SEO-Autorität</span><span class="meta-pill">5 Kategorien</span><span class="meta-pill amber">3 Launch-Artikel Pflicht</span></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">5 Blog-Kategorien</div>
+    <div class="cat-grid">
+      <div class="cat-card blue"><div class="cat-name">OT Security</div><div class="cat-desc">Technische Fachbeiträge · Risikoeinschätzungen · Praxisberichte (anonymisiert)</div></div>
+      <div class="cat-card blue"><div class="cat-name">ISO 27001</div><div class="cat-desc">Zertifizierungswege · Typische Fehler · Was die Norm wirklich bringt</div></div>
+      <div class="cat-card teal"><div class="cat-name">Awareness & Training</div><div class="cat-desc">Wie Lerninhalte ankommen · Seminar-Erfahrungen · Methodik</div></div>
+      <div class="cat-card teal"><div class="cat-name">Projekteinblicke</div><div class="cat-desc">Anonymisierte Cases · Was gut lief, was nicht · Lerneffekte</div></div>
+      <div class="cat-card purple" style="grid-column:span 2"><div class="cat-name">Martins Meinung</div><div class="cat-desc">Persönliche Standpunkte · Kontroverse Einschätzungen · Querverbindungen zwischen IT-Sicherheit und menschlicher Führung. Hier treffen beide Welten aufeinander — das gibt es so nicht zweimal im deutschen Netz.</div></div>
+    </div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">3 Launch-Artikel (müssen vor Go-Live fertig sein)</div>
+    <div class="card"><div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--gray-200);border-radius:var(--radius);background:var(--gray-100)">
+          <span class="badge badge-blue" style="flex-shrink:0;margin-top:1px">OT Security</span>
+          <div><div style="font-size:13px;font-weight:600;color:var(--gray-800)">Warum OT Security kein IT-Problem ist</div><div style="font-size:11px;color:var(--gray-600);margin-top:2px">Informativer Einstieg · breite Zielgruppe · SEO-Ziel: informational</div></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid var(--gray-200);border-radius:var(--radius);background:var(--gray-100)">
+          <span class="badge badge-blue" style="flex-shrink:0;margin-top:1px">ISO 27001</span>
+          <div><div style="font-size:13px;font-weight:600;color:var(--gray-800)">ISO 27001 – 5 Fragen, die wirklich zählen</div><div style="font-size:11px;color:var(--gray-600);margin-top:2px">FAQ-Format · gut für Featured Snippets in Google</div></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;border:1px solid #EEEDFE;border-radius:var(--radius);background:#F8F7FF">
+          <span class="badge" style="flex-shrink:0;margin-top:1px;background:#EEEDFE;color:#534AB7">Martins Meinung</span>
+          <div><div style="font-size:13px;font-weight:600;color:var(--gray-800)">Thema mit Martin abstimmen — eigener Standpunkt</div><div style="font-size:11px;color:var(--gray-600);margin-top:2px">Kontroverse oder unerwartete Perspektive · Martins Stimme</div></div>
+        </div>
+      </div>
+      <div class="open-item">Thema für Artikel 3 mit Martin abstimmen. Alle 3 Artikel vor Go-Live fertig und freigegeben.</div>
+    </div></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Artikel-Template</div>
+    <div class="card"><div class="card-body">
+      <div class="check-list">
+        <div class="check-item">Autor-Box: Foto, Name, Kurz-Bio, Link zu Über mich</div>
+        <div class="check-item">Lesezeit automatisch berechnet (via Rank Math)</div>
+        <div class="check-item">Kategorie-Badge oben sichtbar</div>
+        <div class="check-item">Inhaltsverzeichnis ab 1.000 Wörtern</div>
+        <div class="check-item">Related Posts am Ende</div>
+        <div class="check-item">CTA am Ende: "Passend dazu — Erstgespräch buchen" (Calendly)</div>
+        <div class="check-item">Schema.org Article-Markup via Rank Math</div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SEMINAR ═══ -->
+<div class="page" id="page-seminar">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 05</div>
+    <h1 class="page-hero-title">Seminar-Referenz</h1>
+    <p class="page-hero-desc">Martin ist Co-Trainer beim Seminar "Das neue Business" (Ursula Haller). Diese Seite positioniert Martin als Trainer — kein Direktvertrieb, kein Preisausweis. Buchung läuft über das-neue-business.at.</p>
+    <div class="page-meta">
+      <span class="meta-pill teal">Kein eigenes Produkt</span>
+      <span class="meta-pill">Kein Preis</span>
+      <span class="meta-pill">2 CTAs: Vorabgespräch oder externe Seminarseite</span>
+    </div>
+  </div>
+
+  <div class="strategy-card" style="padding:20px 24px">
+    <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.06em;margin-bottom:8px">FUNNEL-LOGIK</div>
+    <div class="funnel-vis">
+      <div class="funnel-step-vis">Besucher kommt</div>
+      <div class="funnel-arrow-vis">→</div>
+      <div class="funnel-step-vis highlight">Martins Seminar-Seite<br><span style="font-size:10px;opacity:.7">Trainer kennenlernen</span></div>
+      <div class="funnel-arrow-vis">→</div>
+      <div class="funnel-step-vis highlight">Vorabgespräch (Calendly)<br><span style="font-size:10px;opacity:.7">Primär-CTA</span></div>
+      <div class="funnel-arrow-vis">oder</div>
+      <div class="funnel-step-vis">das-neue-business.at<br><span style="font-size:10px;opacity:.7">Buchung ↗</span></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px;margin-top:12px">
+    <div class="card-header"><div class="card-num">1</div><div class="card-title">Hero — Martins persönliche Einladung</div><span class="badge badge-amber">Kein Verkaufstext</span></div>
+    <div class="card-body">
+      <div class="copy-block"><div class="copy-label">Headline (Vorschlag)</div><div class="copy-text">Ein Seminar, das ich selbst besucht hätte – und jetzt mitgestalte.</div></div>
+      <div class="copy-block"><div class="copy-label">Intro (mit Martin abstimmen)</div><div class="copy-text">Seit Jahren begleite ich Unternehmer und Führungskräfte – in IT-Projekten, in Sicherheitsfragen, als strategischer Coach. Im "Das neue Business"-Seminar bringe ich genau das zusammen: Praxis, Struktur und die ehrliche Frage nach dem, was Sie wirklich voranbringt.</div></div>
+      <div class="nogo-item">Kein Preis nennen · Kein Anmeldeformular · Kein "Jetzt buchen"-Button — Buchung immer auf das-neue-business.at</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">2</div><div class="card-title">Was Martin einbringt</div><span class="badge badge-teal">Martins spezifischer Beitrag</span></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">15+ Jahre internationale IT-Praxis — Projekterfahrung, die über Theorie hinausgeht</div>
+        <div class="check-item">Ausbildung zum strategischen Coach DGCo (2009–2010, bei Marion Kaminski)</div>
+        <div class="check-item">Menschen auf ihren stimmigen beruflichen Weg bringen</div>
+        <div class="check-item">Projektkommunikation — Strukturen schaffen, die wirklich tragen</div>
+        <div class="check-item">Lerninhalte so vermitteln, dass sie ankommen — nicht nur präsentiert werden</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">3</div><div class="card-title">Programm-Überblick (3 Tage)</div><span class="badge badge-gray">Orientierung</span></div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;background:var(--gray-100)">
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);margin-bottom:3px">TAG 1 · 9–17 Uhr</div>
+          <div style="font-size:11px;color:var(--gray-800);line-height:1.6">Wahrnehmung & Kommunikation · Gesprächsführung · Subjektiver Verkauf · Typenbestimmung</div>
+        </div>
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;background:var(--gray-100)">
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);margin-bottom:3px">TAG 2 · 9–17 Uhr</div>
+          <div style="font-size:11px;color:var(--gray-800);line-height:1.6">Zeitmanagement · Zahlen & Statistik · Anforderungsprofile · Betriebsaufstellung</div>
+        </div>
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;background:var(--gray-100)">
+          <div style="font-size:11px;font-weight:600;color:var(--gray-400);margin-bottom:3px">TAG 3 · 9–13 Uhr</div>
+          <div style="font-size:11px;color:var(--gray-800);line-height:1.6">Kompetenzplan · Bewerbung & Annoncen · Talente entwickeln</div>
+        </div>
+      </div>
+      <div class="open-item">Texte eigenständig formulieren — nicht aus dem Folder kopieren. Urheberrecht bei Ursula Haller.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">4</div><div class="card-title">Trainer-Team</div><span class="badge badge-gray">Kontext</span></div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;background:var(--gray-100)"><div style="font-size:12px;font-weight:600;color:var(--gray-800);margin-bottom:3px">Ursula Haller</div><div style="font-size:11px;color:var(--gray-600)">Gründerin & Seminarleiterin · Originalmethode</div></div>
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;background:var(--gray-100)"><div style="font-size:12px;font-weight:600;color:var(--gray-800);margin-bottom:3px">Dr. Johannes Ritter</div><div style="font-size:11px;color:var(--gray-600)">Vortragender · Fachliche Vertiefung</div></div>
+        <div style="border:1px solid var(--blue-pale);border-radius:var(--radius);padding:10px;background:var(--blue-pale)"><div style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:3px">Martin Mantel</div><div style="font-size:11px;color:var(--blue)">Dipl.-Ing. · DGCo Coach · Projektkommunikation</div></div>
+      </div>
+      <div class="open-item">Nutzungsfreigabe für Fotos und Bios der anderen Trainer von Ursula Haller einholen.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-num">5</div><div class="card-title">Die zwei CTAs</div><span class="badge badge-teal">Konversionsziel</span></div>
+    <div class="card-body">
+      <div class="copy-block"><div class="copy-label">Text über den CTAs</div><div class="copy-text">Sie überlegen, ob dieses Seminar das Richtige für Sie ist? Ich kann Ihnen als Trainer aus erster Hand erzählen, was Sie erwartet — bevor Sie sich entscheiden.</div></div>
+      <div class="check-list" style="margin-top:12px">
+        <div class="check-item">Primär: Vorabgespräch mit Martin buchen (Calendly) — kostenlos, 30 Min.</div>
+        <div class="check-item">Sekundär: Zur offiziellen Seminarseite → das-neue-business.at (externer Link, neues Tab)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ KONTAKT ═══ -->
+<div class="page" id="page-kontakt">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 06</div>
+    <h1 class="page-hero-title">Kontakt</h1>
+    <p class="page-hero-desc">So wenig Reibung wie möglich. Primär Calendly inline, Formular als Fallback für alle, die lieber schreiben.</p>
+    <div class="page-meta"><span class="meta-pill blue">Primär: Calendly</span><span class="meta-pill">Sekundär: Fluent Forms</span><span class="meta-pill amber">DSGVO beachten</span></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">1</div><div class="card-title">Persönlicher Einstieg</div><span class="badge badge-gray">Ton</span></div>
+    <div class="card-body">
+      <div class="copy-block"><div class="copy-label">Text (Vorschlag)</div><div class="copy-text">Kein Ticket-System, kein Bot. Wenn Sie schreiben, lese ich es selbst. Wenn Sie anrufen, gehe ich ran – oder rufe zurück.</div></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">2</div><div class="card-title">Calendly Inline-Embed</div><span class="badge badge-teal">Primär-CTA</span></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">Inline Embed — kein Popup-Button</div>
+        <div class="check-item">Termintyp: Kostenloses Erstgespräch – 30 Min. via Zoom oder Teams</div>
+        <div class="check-item">DSGVO-Hinweis direkt unter dem Widget</div>
+        <div class="check-item">Borlabs Cookie: Calendly erst nach Consent laden</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">3</div><div class="card-title">Kontaktformular (Fallback)</div><span class="badge badge-gray">Sekundär</span></div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="field"><div class="field-label">Felder</div><div class="field-val">Name · E-Mail · Betreff (Dropdown) · Nachricht · DSGVO-Checkbox (Pflicht)</div></div>
+        <div class="field"><div class="field-label">Plugin</div><div class="field-val">Fluent Forms — DSGVO-konform, automatische Bestätigungs-E-Mail</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-num">4</div><div class="card-title">Direktkontakt</div><span class="badge badge-blue">Immer sichtbar</span></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">Telefon (aus consultant-coach.de übernehmen)</div>
+        <div class="check-item">E-Mail (verschleiert gegen Spam — JS-basiert)</div>
+        <div class="check-item">LinkedIn-Profil-Link</div>
+        <div class="check-item">XING (optional)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ LEGAL ═══ -->
+<div class="page" id="page-legal">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Seite 07</div>
+    <h1 class="page-hero-title">Impressum & Datenschutz</h1>
+    <p class="page-hero-desc">Pflichtseiten. Template-basiert, nur im Footer verlinkt.</p>
+    <div class="page-meta"><span class="meta-pill amber">DSGVO-Pflicht</span><span class="meta-pill">Nur Footer-Link</span></div>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-num">1</div><div class="card-title">Impressum</div></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">Name, Adresse, USt-ID (falls vorhanden), Telefon, E-Mail</div>
+        <div class="check-item">Nur Footer-Link — kein Hauptmenü-Eintrag</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-num">2</div><div class="card-title">Datenschutzerklärung</div></div>
+    <div class="card-body">
+      <div class="check-list">
+        <div class="check-item">Calendly als Auftragsverarbeiter nennen</div>
+        <div class="check-item">Kontaktformular (Fluent Forms)</div>
+        <div class="check-item">Google Analytics (falls verwendet)</div>
+        <div class="check-item">Borlabs Cookie</div>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:var(--gray-600)">Empfohlener Generator: datenschutz-generator.de — aktuell halten.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ TECH ═══ -->
+<div class="page" id="page-tech">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Technischer Stack</div>
+    <h1 class="page-hero-title">Stack & Plugins</h1>
+    <p class="page-hero-desc">Vollständiger technischer Aufbau für die WordPress-Entwicklung.</p>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-header"><div class="card-title">WordPress-Kern</div></div>
+    <div class="card-body" style="padding:0">
+      <table class="info-table">
+        <tr><td>Theme</td><td>Hello Elementor (oder Astra) — Entscheidung ausstehend</td></tr>
+        <tr><td>Page Builder</td><td>Elementor Pro — bereits vorhanden</td></tr>
+        <tr><td>Lokal</td><td>Local by Flywheel</td></tr>
+        <tr><td>Migration</td><td>Duplicator Plugin → all-inkl.com</td></tr>
+        <tr><td>Hosting</td><td>all-inkl.com · LiteSpeed-Server</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Plugins</div></div>
+    <div class="card-body" style="padding:0">
+      <table class="info-table">
+        <tr><td>SEO</td><td>Rank Math — kostenlos · Schema.org · Sitemap</td></tr>
+        <tr><td>Performance</td><td>LiteSpeed Cache — kostenlos · optimal für all-inkl</td></tr>
+        <tr><td>Formulare</td><td>Fluent Forms — DSGVO-konform · kostenlos</td></tr>
+        <tr><td>Cookie / DSGVO</td><td>Borlabs Cookie — ~40 €/Jahr</td></tr>
+        <tr><td>Backup</td><td>UpdraftPlus — kostenlos</td></tr>
+        <tr><td>Security</td><td>Wordfence — kostenlos</td></tr>
+        <tr><td>Kalender</td><td>Calendly (externes Tool) — Embed via Script</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ OFFENE PUNKTE ═══ -->
+<div class="page" id="page-offene">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Status</div>
+    <h1 class="page-hero-title">Offene Punkte</h1>
+    <p class="page-hero-desc">Alle ausstehenden Entscheidungen und benötigten Assets für Go-Live.</p>
+    <div class="page-meta"><span class="meta-pill red">Vom Kunden benötigt</span><span class="meta-pill amber">Abzustimmen</span></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Vom Kunden benötigt (Pflicht für Go-Live)</div>
+    <div class="card"><div class="card-body">
+      <div class="open-item">Profifoto von Martin — liegt laut Briefing vor. Format und Auflösung prüfen (min. 1200px, JPG/WebP).</div>
+      <div class="open-item">Kundenlogos — Freigabe-Liste erstellen. Welche Unternehmen dürfen genannt/gezeigt werden?</div>
+      <div class="open-item">Testimonials — 2–3 echte Kundenstimmen mit Namensfreigabe. Ohne echte Zitate kein Platzhalter.</div>
+      <div class="open-item">Domain martinmantel.de — bereits registriert? Falls nein: registrieren und auf all-inkl zeigen.</div>
+      <div class="open-item">Calendly-Account — eingerichtet? Termintyp "Kostenloses Erstgespräch, 30 Min." konfiguriert?</div>
+      <div class="open-item">Seminar-Details — Formate, Gruppengrößen, aktuelle Termine (falls auf Seite angezeigt).</div>
+      <div class="open-item">Logo / CI — SVG-Datei und Hex-Farbcodes. Falls noch nicht vorhanden: vor Claude Design klären.</div>
+    </div></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Inhaltlich (mit Martin erarbeiten)</div>
+    <div class="card"><div class="card-body">
+      <div class="open-item">Wendepunkt-Story — aufgezeichnetes Gespräch mit Martin führen. Kern der Über-mich-Seite.</div>
+      <div class="open-item">Kernwerte (Sektion 3 Startseite) — Vorschläge: "Praxis vor Theorie · Klarheit statt Buzzwords · Langfristig statt schnell" — mit Martin abstimmen.</div>
+      <div class="open-item">Anonymisierte Projektbeispiele — min. 1 pro Fachbereich. Problem → Lösung → Ergebnis.</div>
+      <div class="open-item">Hero-Variante — A (Netzwerk), B (Schild/Rot), C (Terminal) — Entscheidung mit Martin.</div>
+      <div class="open-item">Thema für Blog-Artikel 3 (Martins Meinung) — mit Martin abstimmen.</div>
+    </div></div>
+  </div>
+
+  <div class="section-group">
+    <div class="section-group-title">Rechtlich (Freigaben einholen)</div>
+    <div class="card"><div class="card-body">
+      <div class="open-item">Nutzungsrechte für alle Zertifikats-Siegel (ISO 27001, TÜV, GICSP, DGCo) — Logos lizenziert?</div>
+      <div class="open-item">Seminar-Inhalte: Freigabe von Ursula Haller für Darstellung auf martinmantel.de.</div>
+      <div class="open-item">Fotos/Bios der anderen Trainer (Dr. Ritter, Ursula Haller) — Nutzungsfreigabe.</div>
+      <div class="open-item">Backlink-Absprache: das-neue-business.at verlinkt auf martinmantel.de (Trainer-Profil).</div>
+    </div></div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(btn => {
+    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + id + "'")) {
+      btn.classList.add('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+function switchHero(variant, btn) {
+  document.querySelectorAll('.hero-variant').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.v-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('hero-' + variant).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
