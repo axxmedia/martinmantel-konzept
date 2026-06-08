@@ -1975,6 +1975,9 @@ function show(id) {
     }
   });
   window.scrollTo(0, 0);
+  // Aktuelle Seite für Kommentar-Widget merken
+  const titleEl = page ? page.querySelector('.page-hero-title') : null;
+  window.__currentPage = titleEl ? titleEl.textContent.trim() : id;
 }
 
 function switchHero(variant, btn) {
@@ -1983,6 +1986,208 @@ function switchHero(variant, btn) {
   document.getElementById('hero-' + variant).classList.add('active');
   btn.classList.add('active');
 }
+
+/* ─── KOMMENTAR-WIDGET ─── */
+const N8N_WEBHOOK = 'https://n8n.axxento.com/webhook/konzept-kommentar';
+window.__currentPage = 'Projektübersicht';
+window.__currentSection = '';
+
+function ckCurrentPageName() {
+  const active = document.querySelector('.page.active');
+  if (!active) return 'Seite';
+  const t = active.querySelector('.page-hero-title');
+  return t ? t.textContent.trim() : 'Seite';
+}
+
+function ckOpen(sectionLabel) {
+  window.__currentPage = ckCurrentPageName();
+  window.__currentSection = sectionLabel || '';
+  document.getElementById('ck-modal').classList.add('open');
+  document.getElementById('ck-page').textContent = window.__currentPage;
+  const secEl = document.getElementById('ck-section-row');
+  if (sectionLabel) {
+    document.getElementById('ck-section').textContent = sectionLabel;
+    secEl.style.display = 'block';
+  } else {
+    secEl.style.display = 'none';
+  }
+  document.getElementById('ck-text').focus();
+}
+function ckClose() {
+  document.getElementById('ck-modal').classList.remove('open');
+  document.getElementById('ck-text').value = '';
+  document.getElementById('ck-status').textContent = '';
+}
+async function ckSend() {
+  const text = document.getElementById('ck-text').value.trim();
+  const name = document.getElementById('ck-name').value.trim();
+  const status = document.getElementById('ck-status');
+  if (!text) { status.style.color = '#E24B4A'; status.textContent = 'Bitte einen Kommentar eingeben.'; return; }
+  const btn = document.getElementById('ck-send');
+  btn.disabled = true; btn.textContent = 'Senden …';
+  status.style.color = '#888'; status.textContent = '';
+  try {
+    await fetch(N8N_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        page: window.__currentPage || 'Seite',
+        section: window.__currentSection || window.__currentPage || 'Seite',
+        name: name || 'Anonym',
+        comment: text
+      })
+    });
+    status.style.color = '#1D9E75';
+    status.textContent = '✓ Kommentar gesendet – danke!';
+    document.getElementById('ck-text').value = '';
+    setTimeout(ckClose, 1400);
+  } catch (e) {
+    status.style.color = '#E24B4A';
+    status.textContent = 'Senden fehlgeschlagen. Bitte erneut versuchen.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Kommentar senden';
+  }
+}
+
+// Pro-Karte-Buttons automatisch einfügen
+function ckInjectButtons() {
+  const mkBtn = (label) => {
+    const b = document.createElement('button');
+    b.className = 'ck-inline-btn';
+    b.title = 'Kommentar zu: ' + label;
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+    b.onclick = (e) => { e.stopPropagation(); ckOpen(label); };
+    return b;
+  };
+
+  // 1) Card-Header (Detailkarten)
+  document.querySelectorAll('.card-header').forEach(h => {
+    if (h.querySelector('.ck-inline-btn')) return;
+    const titleEl = h.querySelector('.card-title') || h;
+    const label = titleEl.textContent.trim().slice(0, 80) || 'Karte';
+    h.style.position = 'relative';
+    const btn = mkBtn(label);
+    h.appendChild(btn);
+  });
+
+  // 2) Section-Gruppentitel
+  document.querySelectorAll('.section-group-title').forEach(t => {
+    if (t.querySelector('.ck-inline-btn')) return;
+    const label = t.textContent.trim().slice(0, 80) || 'Abschnitt';
+    t.style.display = 'flex';
+    t.style.alignItems = 'center';
+    t.style.justifyContent = 'space-between';
+    const btn = mkBtn(label);
+    t.appendChild(btn);
+  });
+}
+document.addEventListener('DOMContentLoaded', ckInjectButtons);
+
+
 </script>
+
+<!-- ─── KOMMENTAR-WIDGET ─── -->
+<style>
+#ck-fab {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9000;
+  display: flex; align-items: center; gap: 9px;
+  background: #FF7A1A; color: #fff; border: none;
+  padding: 13px 20px; border-radius: 30px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; box-shadow: 0 6px 20px rgba(255,122,26,.45);
+  transition: transform .15s, box-shadow .15s;
+}
+#ck-fab:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(255,122,26,.55); }
+#ck-fab svg { width: 19px; height: 19px; }
+#ck-modal {
+  position: fixed; inset: 0; z-index: 9001;
+  background: rgba(10,22,40,.55); backdrop-filter: blur(3px);
+  display: none; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+}
+#ck-modal.open { display: flex; }
+.ck-card {
+  background: #fff; border-radius: 16px; width: 92%; max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3); overflow: hidden;
+  animation: ckIn .2s ease;
+}
+@keyframes ckIn { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+.ck-head {
+  background: #0A1628; color: #fff; padding: 16px 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ck-head-ic {
+  width: 34px; height: 34px; border-radius: 9px; background: #FF7A1A;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ck-head-ic svg { width: 18px; height: 18px; }
+.ck-head-t { flex: 1; }
+.ck-head-t .ck-title { font-size: 15px; font-weight: 600; }
+.ck-head-t .ck-sub { font-size: 12px; color: rgba(255,255,255,.55); margin-top: 1px; }
+.ck-head-t .ck-sub b { color: #FF9E54; font-weight: 600; }
+.ck-x { background: none; border: none; color: rgba(255,255,255,.6); font-size: 22px; cursor: pointer; line-height: 1; padding: 0 4px; }
+.ck-x:hover { color: #fff; }
+.ck-body { padding: 18px 20px; }
+.ck-label { font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #888; margin-bottom: 5px; display: block; }
+.ck-input, .ck-textarea {
+  width: 100%; border: 1px solid #D8DCE4; border-radius: 9px;
+  padding: 10px 12px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: #1C2333; outline: none; transition: border-color .15s;
+}
+.ck-input:focus, .ck-textarea:focus { border-color: #FF7A1A; }
+.ck-textarea { min-height: 96px; resize: vertical; margin-bottom: 4px; }
+.ck-input { margin-bottom: 14px; }
+.ck-status { font-size: 13px; min-height: 18px; margin: 6px 0 10px; }
+.ck-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.ck-btn-cancel { background: #fff; border: 1px solid #D8DCE4; color: #5A6070; padding: 10px 18px; border-radius: 9px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.ck-btn-cancel:hover { background: #F5F8FA; }
+.ck-btn-send { background: #FF7A1A; border: none; color: #fff; padding: 10px 20px; border-radius: 9px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+.ck-btn-send:hover { background: #E86A0A; }
+.ck-btn-send:disabled { opacity: .6; cursor: default; }
+.ck-inline-btn {
+  flex-shrink: 0; margin-left: 10px;
+  width: 26px; height: 26px; border-radius: 7px;
+  background: rgba(255,122,26,.12); border: 1px solid rgba(255,122,26,.35);
+  color: #E86A0A; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: all .15s; vertical-align: middle; padding: 0;
+}
+.ck-inline-btn:hover { background: #FF7A1A; border-color: #FF7A1A; color: #fff; transform: scale(1.08); }
+.ck-inline-btn svg { width: 14px; height: 14px; }
+.card-header .ck-inline-btn { margin-left: auto; }
+</style>
+
+<button id="ck-fab" onclick="ckOpen('')">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  Kommentar
+</button>
+
+<div id="ck-modal" onclick="if(event.target===this)ckClose()">
+  <div class="ck-card">
+    <div class="ck-head">
+      <div class="ck-head-ic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="ck-head-t">
+        <div class="ck-title">Kommentar zum Konzept</div>
+        <div class="ck-sub">Seite: <b id="ck-page">—</b></div>
+        <div class="ck-sub" id="ck-section-row" style="display:none">Abschnitt: <b id="ck-section">—</b></div>
+      </div>
+      <button class="ck-x" onclick="ckClose()">×</button>
+    </div>
+    <div class="ck-body">
+      <label class="ck-label">Ihr Name (optional)</label>
+      <input id="ck-name" class="ck-input" type="text" placeholder="z.B. Martin Mantel">
+      <label class="ck-label">Ihr Kommentar</label>
+      <textarea id="ck-text" class="ck-textarea" placeholder="Was möchten Sie zu dieser Seite anmerken?"></textarea>
+      <div id="ck-status" class="ck-status"></div>
+      <div class="ck-actions">
+        <button class="ck-btn-cancel" onclick="ckClose()">Abbrechen</button>
+        <button id="ck-send" class="ck-btn-send" onclick="ckSend()">Kommentar senden</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
