@@ -9,24 +9,30 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
-  --navy: #0a1628;
-  --navy-mid: #14213d;
-  --navy-light: #1e3a5f;
-  --blue: #185FA5;
-  --blue-light: #378ADD;
-  --blue-pale: #E6F1FB;
-  --teal: #0F6E56;
-  --teal-pale: #E1F5EE;
-  --amber: #BA7517;
-  --amber-pale: #FAEEDA;
-  --red: #A32D2D;
-  --red-pale: #FCEBEB;
-  --gray-100: #F7F8FA;
-  --gray-200: #ECEEF2;
-  --gray-300: #D8DCE4;
-  --gray-400: #9AA0AD;
-  --gray-600: #5A6070;
-  --gray-800: #1C2333;
+  /* Dunkelblau-Basis (bleibt als seriöses Fundament) */
+  --navy: #1A2A3A;
+  --navy-mid: #233547;
+  --navy-light: #34495E;
+  /* Dunkelblau als Primärfarbe statt Electric Blue */
+  --blue: #2C5F7C;
+  --blue-light: #4A86A8;
+  --blue-pale: #E4EEF3;
+  /* Salbeigrün als Akzent- und Markenfarbe */
+  --teal: #6B8E6F;
+  --teal-pale: #E8F0E7;
+  --sage: #8AAB8E;
+  --sage-deep: #5C7D60;
+  --sage-pale: #EDF3EC;
+  --amber: #A8782F;
+  --amber-pale: #F5EAD6;
+  --red: #A8504A;
+  --red-pale: #F5E4E2;
+  --gray-100: #F6F7F6;
+  --gray-200: #EAEDEA;
+  --gray-300: #D5DAD5;
+  --gray-400: #969E96;
+  --gray-600: #586058;
+  --gray-800: #232B23;
   --white: #ffffff;
   --font-display: 'DM Serif Display', serif;
   --font-body: 'DM Sans', sans-serif;
@@ -843,6 +849,56 @@ body {
   </div>
 
   <div class="section-group">
+    <div class="section-group-title">Status &amp; nächste Schritte (Kundenfeedback Juni 2026)</div>
+
+    <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--navy);border-radius:var(--radius-lg);margin-bottom:12px">
+      <div style="width:42px;height:42px;border-radius:11px;background:var(--sage);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <i class="ti ti-rocket" style="font-size:21px;color:#fff"></i>
+      </div>
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.45);margin-bottom:3px">GO-LIVE ZIEL</div>
+        <div style="font-size:17px;font-weight:600;color:#fff">1. September 2026</div>
+      </div>
+      <span style="font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;background:rgba(138,171,142,.25);color:#B5D4B8;border:1px solid rgba(138,171,142,.4)">vom Kunden gewünscht</span>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+          <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:11px 13px">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--teal);margin-bottom:7px"><i class="ti ti-circle-check" style="font-size:12px"></i> ENTSCHIEDEN</div>
+            <div style="font-size:12px;color:var(--gray-800);line-height:1.7">
+              <div>✓ Farbwelt: Salbei + Dunkelblau</div>
+              <div>✓ Calendly für Erstgespräche</div>
+              <div>✓ Domain insights bei Telekom reserviert</div>
+              <div>✓ Hosting: all-inkl (Kunde)</div>
+            </div>
+          </div>
+
+          <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:11px 13px">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--amber);margin-bottom:7px"><i class="ti ti-clock" style="font-size:12px"></i> KUNDE LIEFERT NACH</div>
+            <div style="font-size:12px;color:var(--gray-800);line-height:1.7">
+              <div>○ Fotoshooting (nächste Woche)</div>
+              <div>○ Zertifikate statt Siegel (abgelaufen)</div>
+              <div>○ Kundennamen-Liste</div>
+              <div>○ Seminar-Historie &amp; Blog-Inhalte</div>
+            </div>
+          </div>
+
+          <div style="border:1px solid #B8CDD8;border-radius:var(--radius);padding:11px 13px;background:var(--blue-pale);grid-column:span 2">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--blue);margin-bottom:7px"><i class="ti ti-help-circle" style="font-size:12px"></i> IN KLÄRUNG</div>
+            <div style="font-size:12px;color:var(--gray-800);line-height:1.6">
+              <strong>Buchungstool Business-Seminar:</strong> Kunde klärt gerade, ob das Seminar direkt buchbar in die Seite eingebaut werden darf. Das ist die <strong>Option-2-Entscheidung</strong> aus dem CTA-Konzept (eigener Kaufprozess vs. reine Weiterleitung) — siehe Seite "Seminar".
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-group">
     <div class="section-group-title">Projektdaten</div>
     <div class="card">
       <div class="card-body" style="padding:0">
@@ -853,6 +909,8 @@ body {
           <tr><td>Plattform</td><td>WordPress · Hello Elementor Theme oder Astra · Elementor Pro</td></tr>
           <tr><td>Entwicklung</td><td>Lokal (Local by Flywheel) → Migration via Duplicator → all-inkl.com</td></tr>
           <tr><td>Workflow</td><td>Konzept → Claude Design (Mockups) → Claude Code (Build) → Deploy</td></tr>
+          <tr><td>Go-Live Ziel</td><td>1. September 2026 <span class="badge badge-teal">Kundenwunsch</span></td></tr>
+          <tr><td>Farbwelt</td><td>Salbeigrün + Dunkelblau <span class="badge badge-teal">entschieden</span></td></tr>
           <tr><td>Kalender</td><td>Calendly — kostenloses Erstgespräch, 30 Min.</td></tr>
           <tr><td>SEO</td><td>Rank Math · Schema.org · llm.txt für KI-Suche</td></tr>
           <tr><td>DSGVO</td><td>Borlabs Cookie · Fluent Forms · Datenschutzhinweise</td></tr>
@@ -961,16 +1019,20 @@ body {
   </div>
 
   <div class="section-group">
-    <div class="section-group-title">Zertifikate & Siegel</div>
+    <div class="section-group-title">Zertifikate & Qualifikationen</div>
     <div class="card">
       <div class="card-body">
         <div class="tag-list">
           <span class="tag">ISO 27001 Lead Auditor (TÜV geprüft)</span>
           <span class="tag">GICSP – Global Industrial Cyber Security Professional</span>
           <span class="tag">DGCo – Strategischer Coach</span>
-          <span class="tag">TÜV-Siegel</span>
         </div>
-        <div class="open-item">Nutzungsrechte für alle Siegel-Logos beim Kunden bestätigen lassen.</div>
+        <div style="margin-top:12px;display:flex;align-items:flex-start;gap:10px;padding:11px 13px;background:var(--amber-pale);border-radius:var(--radius);border:1px solid #E0C48A">
+          <i class="ti ti-info-circle" style="font-size:16px;color:var(--amber);flex-shrink:0;margin-top:1px"></i>
+          <div style="font-size:12px;color:#7A5418;line-height:1.55">
+            <strong>Statusänderung (Kundenfeedback):</strong> Die offiziellen Siegel-Logos sind aktuell abgelaufen und werden erneuert. Übergangslösung bis dahin: Statt der Siegel-Grafiken werden die <strong>Zertifikate selbst als Qualifikationsnachweise</strong> dargestellt — als Text-Badges mit kurzer Erklärung, was sie bedeuten. Sobald die Siegel aktualisiert sind, können die offiziellen Logos ergänzt werden.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1295,8 +1357,8 @@ body {
         <div class="check-item">ISO 27001 Lead Auditor (TÜV geprüft) — <span style="color:var(--gray-600)">Was bedeutet das für den Kunden? → Erklärender Satz</span></div>
         <div class="check-item">GICSP – Global Industrial Cyber Security Professional — <span style="color:var(--gray-600)">Erklärung</span></div>
         <div class="check-item">DGCo – Strategischer Coach — <span style="color:var(--gray-600)">Ausgebildet bei Marion Kaminski</span></div>
-        <div class="check-item">TÜV-Siegel</div>
       </div>
+      <div style="margin-top:10px;padding:9px 12px;background:var(--amber-pale);border-radius:var(--radius);font-size:12px;color:#7A5418;line-height:1.5"><i class="ti ti-info-circle" style="font-size:13px;margin-right:4px"></i>Offizielle Siegel-Logos derzeit abgelaufen (werden erneuert). Bis dahin Darstellung als Text-Zertifikate mit Erklärung.</div>
     </div>
   </div>
 
@@ -1917,45 +1979,96 @@ body {
   </div>
 
   <div class="section-group">
-    <div class="section-group-title">Infoquellen für Blog-Content (von Martin liefern)</div>
+    <div class="section-group-title">Infoquellen &amp; Persönlichkeit (vom Kunden geliefert ✓)</div>
     <div class="card">
-      <div class="card-header" style="background:var(--gray-100);border-bottom:1px solid var(--gray-200);padding:12px 18px">
-        <div style="font-size:13px;color:var(--gray-600);line-height:1.5">Welche Quellen konsumiert Martin regelmäßig, um fachlich up-to-date zu bleiben? Diese Liste ist die Grundlage für kontinuierlichen Blog-Content und zeigt Martins persönliche Einordnung im Fachdiskurs.</div>
+      <div class="card-header" style="background:var(--sage-pale);border-bottom:1px solid #C5D8C7;padding:12px 18px">
+        <div style="font-size:13px;color:var(--sage-deep);line-height:1.5"><strong>Erste konkrete Aussagen sind da</strong> — Martin vertieft sie noch weiter. Diese Quellen und Haltungen sind das Rohmaterial für Blog, Über-mich und die gesamte Tonalität der Seite.</div>
       </div>
       <div class="card-body">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
-          <div>
-            <div class="field-label">Podcasts</div>
-            <div class="open-item">Welche Podcasts hört Martin zu OT Security, ISO 27001 oder Coaching? (z.B. Darknet Diaries, SANS Internet Stormcast oder eigene Empfehlungen)</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+          <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px">
+            <div class="field-label" style="display:flex;align-items:center;gap:6px"><i class="ti ti-microphone" style="font-size:13px;color:var(--teal)"></i> Podcasts</div>
+            <div style="font-size:13px;color:var(--gray-800);line-height:1.7;margin-top:4px">
+              Joe Dispenza<br>
+              Nachgehackt<br>
+              Security Insider<br>
+              Passwort (von Heise)
+            </div>
           </div>
-          <div>
-            <div class="field-label">YouTube-Kanäle</div>
-            <div class="open-item">Welche YouTube-Kanäle nutzt Martin zur Weiterbildung? (Fachkanäle OT/ICS, Security-Konferenzen, Coaching)</div>
+          <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px">
+            <div class="field-label" style="display:flex;align-items:center;gap:6px"><i class="ti ti-school" style="font-size:13px;color:var(--teal)"></i> Fortbildung &amp; Seminare</div>
+            <div style="font-size:13px;color:var(--gray-800);line-height:1.7;margin-top:4px">
+              Ursula Haller &amp; Joe Dispenza<br>
+              SANS Institute (Security)<br>
+              Alles zu neuen Lernmethoden
+            </div>
           </div>
-          <div>
-            <div class="field-label">Blogs & Newsportale</div>
-            <div class="open-item">Welche Fachblogs oder Portale liest Martin regelmäßig? (z.B. Heise Security, BSI, ISA Global, Krebs on Security, Newsletter)</div>
+          <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px">
+            <div class="field-label" style="display:flex;align-items:center;gap:6px"><i class="ti ti-news" style="font-size:13px;color:var(--teal)"></i> Branchen-Input</div>
+            <div style="font-size:13px;color:var(--gray-800);line-height:1.7;margin-top:4px">
+              Younity<br>
+              Austausch mit Businesstrainern<br>
+              Security-Insider<br>
+              Branchentreffen Energie &amp; Automotive (Datenschutz/Infosicherheit)
+            </div>
           </div>
-          <div>
-            <div class="field-label">Communities & Netzwerke</div>
-            <div class="open-item">In welchen LinkedIn-Gruppen, Foren oder Verbänden ist Martin aktiv? (z.B. VDE, ZVEI, ISA, BSI-Netzwerke)</div>
+          <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px">
+            <div class="field-label" style="display:flex;align-items:center;gap:6px"><i class="ti ti-user-star" style="font-size:13px;color:var(--teal)"></i> Folgt / inspiriert von</div>
+            <div style="font-size:13px;color:var(--gray-800);line-height:1.7;margin-top:4px">
+              Joe Dispenza<br>
+              SILVA Methode<br>
+              Alternative Methoden (ohne Esoterik)
+            </div>
           </div>
         </div>
-        <div style="padding:10px 14px;background:var(--blue-pale);border-radius:var(--radius);border:1px solid #B5D4F4">
-          <div style="font-size:11px;font-weight:600;color:var(--blue);margin-bottom:4px">WARUM DAS WICHTIG IST</div>
-          <div style="font-size:12px;color:var(--blue);line-height:1.5">Die Infoquellen definieren Martins Redaktionskalender. Aus 5–6 regelmäßig konsumierten Quellen lassen sich pro Monat 2 Blog-Artikel ableiten. Martins persönliche Einordnung zu aktuellen Themen ist genau das, was die Kategorie "Martins Meinung" von generischen Fachartikeln unterscheidet.</div>
+
+        <div style="border:1px solid #C5D8C7;border-radius:var(--radius);padding:14px 16px;background:var(--sage-pale);margin-bottom:12px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--sage-deep);margin-bottom:8px"><i class="ti ti-quote" style="font-size:13px"></i> MARTINS LEITSÄTZE (O-TON)</div>
+          <div style="font-family:var(--font-display);font-style:italic;font-size:15px;color:var(--gray-800);line-height:1.6;margin-bottom:8px">„Arbeit macht Spaß, daher kann sie nicht genug sein. Denn alles, was Spaß macht, fühlt sich nicht wie Arbeit an."</div>
+          <div style="font-family:var(--font-display);font-style:italic;font-size:15px;color:var(--gray-800);line-height:1.6">„Wer tut, was alle tun, bekommt, was alle bekommen."</div>
+        </div>
+
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px 16px;margin-bottom:12px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--blue);margin-bottom:8px"><i class="ti ti-heart-handshake" style="font-size:13px"></i> WAS IHN ANTREIBT (für Über-mich-Seite)</div>
+          <div style="font-size:13px;color:var(--gray-800);line-height:1.65">
+            Den <strong>Menschen als Ganzes</strong> sehen. Alternative Methoden und Techniken kennenlernen, die geistig und körperlich gesünder machen — <strong>ohne Esoterik</strong>. Andere Menschen bei ihrer Weiterentwicklung unterstützen. Eine zentrale Frage: <em>Wie kann KI den Menschen unterstützen, aber nicht ersetzen?</em>
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px 16px">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--blue);margin-bottom:8px"><i class="ti ti-bulb" style="font-size:13px"></i> WARUM ER MEHR SEMINARE GEBEN WILL (O-TON, fürs Seminar-Narrativ)</div>
+          <div style="font-size:13px;color:var(--gray-800);line-height:1.65">
+            „Weil wir in einer Zeit leben, wo sich die Gegebenheiten immer schneller ändern und die Menschen Unterstützung brauchen, um ihren Alltag besser zu meistern. Die Kurse <em>Das neue Business</em> vermitteln Techniken, Situationen besser und schneller einzuschätzen. Mit den erlernten Techniken findet man schneller Lösungen — privat wie geschäftlich. Menschen, die diese Techniken nutzen, haben einen klaren Vorteil im Geschäftsleben."
+          </div>
+        </div>
+
+        <div style="margin-top:12px;padding:10px 14px;background:var(--blue-pale);border-radius:var(--radius);border:1px solid #B8CDD8">
+          <div style="font-size:11px;font-weight:600;color:var(--blue);margin-bottom:4px">REDAKTIONELLE EINORDNUNG</div>
+          <div style="font-size:12px;color:var(--blue);line-height:1.55">Diese Mischung ist Martins Alleinstellung: Security-Tiefe (SANS, Heise, Security-Insider) trifft auf Persönlichkeitsentwicklung (Joe Dispenza, SILVA, neue Lernmethoden). Genau diese Brücke — Technik UND Mensch — trägt die Blog-Kategorie „Martins Meinung" und unterscheidet ihn von rein fachlichen Security-Beratern.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="section-group">
+    <div class="section-group-title">Noch vom Kunden ausstehend</div>
+    <div class="card"><div class="card-body">
+      <div class="open-item">Vertiefung der Blog-/Persönlichkeits-Aussagen (erste O-Töne liegen vor).</div>
+      <div class="open-item">Liste der bisher gegebenen Seminare.</div>
+      <div class="open-item">Kundennamen-Liste für Referenzen.</div>
+      <div class="open-item">Professionelle Fotos (Shooting nächste Woche).</div>
+      <div class="open-item">Erneuerte Zertifikats-Siegel (sobald wieder gültig).</div>
+    </div></div>
+  </div>
+
+  <div class="section-group">
     <div class="section-group-title">Rechtlich (Freigaben einholen)</div>
     <div class="card"><div class="card-body">
-      <div class="open-item">Nutzungsrechte für alle Zertifikats-Siegel (ISO 27001, TÜV, GICSP, DGCo) — Logos lizenziert?</div>
       <div class="open-item">Seminar-Inhalte: Freigabe von Ursula Haller für Darstellung auf mantel-insights.de.</div>
       <div class="open-item">Fotos/Bios der anderen Trainer (Dr. Ritter, Ursula Haller) — Nutzungsfreigabe.</div>
       <div class="open-item">Backlink-Absprache: das-neue-business.at verlinkt auf mantel-insights.de (Trainer-Profil).</div>
+      <div class="open-item">Falls Buchungstool integriert wird: Vertriebsrecht &amp; Provisionsmodell mit Ursula Haller klären.</div>
     </div></div>
   </div>
 </div>
